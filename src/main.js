@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Nav from './components/Nav.vue'
 import axios from 'axios'
+import store from './store'
 
 Vue.use(axios)
 Vue.component('b-link', BLink)
@@ -27,5 +28,6 @@ Vue.prototype.baseURL = function () {
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

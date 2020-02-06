@@ -13,7 +13,7 @@
                         <router-link to="/register" v-show="preLogin">注册</router-link>
                     </b-nav-item>
                     <b-nav-item>
-                        <router-link to="/register" v-show="afterLogin">个人中心</router-link>
+                        <router-link to="/register" v-if="afterLogin">个人中心</router-link>
                     </b-nav-item>
                     <b-nav-item><router-link to="/email">关于</router-link></b-nav-item>
                 </b-navbar-nav>
