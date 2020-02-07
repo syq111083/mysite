@@ -7,15 +7,16 @@
                         <router-link to="/">首页</router-link>
                     </b-nav-item>
                     <b-nav-item>
-                        <router-link to="/login" v-show="preLogin">登录</router-link>
+                        <router-link to="/login" v-if="!isLogin">登录</router-link>
                     </b-nav-item>
                     <b-nav-item>
-                        <router-link to="/register" v-show="preLogin">注册</router-link>
+                        <router-link to="/register" v-if="!isLogin">注册</router-link>
                     </b-nav-item>
                     <b-nav-item>
-                        <router-link to="/register" v-if="afterLogin">个人中心</router-link>
                     </b-nav-item>
                     <b-nav-item><router-link to="/email">关于</router-link></b-nav-item>
+                    <b-nav-item style="margin-left: 2rem;"><router-link to="/email" v-if="isLogin">欢迎你，{{ nickname }}</router-link></b-nav-item>
+                    <b-nav-item v-show="isLogin" style="margin-left: 4rem;"><b-link v-on:click="exit">退出登录</b-link></b-nav-item>
                 </b-navbar-nav>
             </b-navbar>
         </div>
@@ -24,21 +25,25 @@
     </div>
 </template>
 <script>
-import login from '../views/Login.vue'
-
 export default {
   data () {
     return {
-      preLogin: true,
-      afterLogin: false
+      isLogin: false,
+      token: this.$store.state.token,
+      nickname: this.$store.state.nickname
+    }
+  },
+  methods: {
+    exit () {
+      localStorage.clear()
+      location.reload()
     }
   },
   mounted () {
-    if (login.isLogin === true) {
-      this.preLogin = false
-      this.afterLogin = false
-      this.afterLogin = true
+    if (this.$store.state.token !== null) {
+      this.isLogin = true
     }
+    console.log('???' + this.$store.state.token)
   }
 }
 </script>

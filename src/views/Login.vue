@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid" style="padding: 0rem;">
-        <v-nav v-show="preLogin"></v-nav>
-        <div v-show="preLogin" class="text-center">
+        <v-nav v-show="!isLogin"></v-nav>
+        <div class="text-center" v-show="!isLogin">
             <b-row style="width: 100%;margin-top: 1rem;" class="text-center">
                 <b-form style="margin: 0 auto;">
                     <b-form-group>
@@ -37,7 +37,7 @@
                 </b-alert>
             </b-row>
         </div>
-        <div v-show="afterLogin" class="text-center">
+        <div v-show="isLogin" class="text-center">
             <h1 style="margin-top: 2rem;">登录成功</h1>
             <router-link to="/">如果浏览器没有响应，点击此处返回首页</router-link>
         </div>
@@ -51,16 +51,19 @@ import router from '../router/index.js'
 export default {
   data () {
     return {
+      isLogin: false,
       show: false,
       dismissSecs: 10,
       dismissCountDown: 0,
-      preLogin: true,
-      afterLogin: false,
-      isLogin: false,
       form: {
         email: '',
         password: ''
       }
+    }
+  },
+  mounted () {
+    if (this.$store.state.token !== null) {
+      this.isLogin = true
     }
   },
   methods: {
@@ -75,10 +78,10 @@ export default {
             password: this.form.password
           }
         }).then(res => {
-          this.preLogin = false
-          this.afterLogin = true
-          setTimeout(this.push, 5000)
+          localStorage.setItem('token', res.data.token)
+          window.localStorage.setItem('nickname', res.data.nickname)
           this.isLogin = true
+          setTimeout(this.push, 3000)
         })
       } else {
         this.dismissCountDown = this.dismissSecs
@@ -90,6 +93,7 @@ export default {
     },
     push () {
       router.push('/')
+      location.reload()
     }
   }
 }
