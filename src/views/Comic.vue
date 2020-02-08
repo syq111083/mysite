@@ -19,7 +19,7 @@
         <b-row v-show="showProps">
         <b-col cols v-for="(comic,index) in comics" v-bind:key="index">
             <b-col cols>
-                <b-img thumbnail fluid left src="comic.photo" alt="alt" blank-color="#88f" width=200 height=250></b-img>
+                <b-img thumbnail fluid left src="comic.photo" alt="xxxxx" blank-color="#88f" width=200 height=250></b-img>
             </b-col>
             <b-row>
                 <b-col>
