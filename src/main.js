@@ -22,7 +22,7 @@ Vue.component('v-nav', Nav)
 Vue.config.productionTip = false
 
 Vue.prototype.baseURL = function () {
-  return 'http://47.104.98.233/'
+  return 'http://47.104.98.233'
 }
 
 new Vue({

@@ -48,7 +48,7 @@ export default {
       searchContent: null,
       comics: [],
       photo: null,
-      alt: this.baseURL() + 'images/1.jpg'
+      alt: this.baseURL() + '/images/1.jpg'
     }
   },
   methods: {
