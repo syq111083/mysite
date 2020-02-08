@@ -59,6 +59,7 @@ export default {
       this.selected = e
     },
     getComics () {
+      console.log(this.baseURL())
       if (this.searchContent !== null) {
         axios({
           method: 'get',
