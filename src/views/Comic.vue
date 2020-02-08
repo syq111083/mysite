@@ -19,7 +19,7 @@
         <b-row v-show="showProps">
         <b-col cols v-for="(comic,index) in comics" v-bind:key="index">
             <b-col cols>
-                <b-img thumbnail fluid left src="/photo/1505236752240.jpg" alt="Fluid image" blank-color="#88f" width=200 height=250></b-img>
+                <b-img thumbnail fluid left src="comic.photo" alt="alt" blank-color="#88f" width=200 height=250></b-img>
             </b-col>
             <b-row>
                 <b-col>
@@ -46,7 +46,9 @@ export default {
       humidity: 50,
       selected: '名称',
       searchContent: null,
-      comics: []
+      comics: [],
+      photo: null,
+      alt: this.baseURL() + 'images/1.jpg'
     }
   },
   methods: {
