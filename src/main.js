@@ -12,7 +12,6 @@ import Nav from './components/Nav.vue'
 import axios from 'axios'
 import store from './store'
 
-Vue.use(axios)
 Vue.component('b-link', BLink)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -23,11 +22,12 @@ Vue.component('v-nav', Nav)
 Vue.config.productionTip = false
 
 Vue.prototype.baseURL = function () {
-  return '47.104.98.233'
+  return 'http://47.104.98.233'
 }
 
 new Vue({
   router,
   store,
+  axios,
   render: h => h(App)
 }).$mount('#app')

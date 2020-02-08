@@ -14,9 +14,10 @@
                     </b-nav-item>
                     <b-nav-item>
                     </b-nav-item>
+                    <b-nav-item><router-link to="/comic">漫画评分</router-link></b-nav-item>
+                    <b-nav-item><router-link to="/email" v-if="isLogin"><p class="text-success">欢迎, {{ nickname }}</p></router-link></b-nav-item>
+                    <b-nav-item v-show="isLogin"><b-link v-on:click="exit">退出登录</b-link></b-nav-item>
                     <b-nav-item><router-link to="/email">关于</router-link></b-nav-item>
-                    <b-nav-item style="margin-left: 2rem;"><router-link to="/email" v-if="isLogin">欢迎你，{{ nickname }}</router-link></b-nav-item>
-                    <b-nav-item v-show="isLogin" style="margin-left: 4rem;"><b-link v-on:click="exit">退出登录</b-link></b-nav-item>
                 </b-navbar-nav>
             </b-navbar>
         </div>
@@ -47,3 +48,8 @@ export default {
   }
 }
 </script>
+<style>
+    b-nav-item {
+        margin-left: 4rem
+    }
+</style>

@@ -72,7 +72,7 @@ export default {
       if (this.form.email !== '' && this.form.password !== '') {
         axios({
           method: 'post',
-          url: 'http://' + this.baseURL() + ':8080' + '/account/login',
+          url: this.baseURL() + ':8080' + '/account/login',
           data: {
             email: this.form.email,
             password: this.form.password

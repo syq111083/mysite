@@ -29,8 +29,8 @@
                     <p>{{ text }}</p>
                     <h4 id="list-item-2">坑 2</h4>
                     <p>{{ text2 }}</p>
-                    <h4 id="list-item-3">Item 3</h4>
-                    <p>{{ text2 }}</p>
+                    <h4 id="list-item-3">坑 3</h4>
+                    <p>{{ text3 }}</p>
                     <h4 id="list-item-4">Item 4</h4>
                     <p>{{ text2 }}</p>
                     <h4 id="list-item-5">Item 5</h4>
@@ -38,7 +38,7 @@
                 </div>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row style="width: 100%;">
             <!-- Use HTML and sub-components in slots -->
                 <b-pagination
                   v-model="currentPage"
@@ -72,6 +72,7 @@ export default {
     return {
       text: 'Eslint的判断机制有问题，出现“unexpected token ；”的时候，不要看是不是真缺个"；"，看看是不是少个大括号}',
       text2: `ESlint，组件标签命名必须带一个“-”在里面，不然报错`,
+      text3: 'ESlint,data里的数据，最后一个末尾不要加逗号',
       isClick: false,
       rows: 100,
       perPage: 10,
