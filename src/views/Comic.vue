@@ -17,17 +17,18 @@
         </b-row>
         <hr v-show="showProps">
         <b-row v-show="showProps">
-        <b-col cols v-for="(comic,index) in comics" v-bind:key="index">
+        <b-col cols="4" v-for="(comic,index) in comics" v-bind:key="index">
             <b-col cols>
-                <b-img thumbnail fluid left :src="comic.cover" alt="没有封面" blank-color="#88f" width=200 height=250></b-img>
+                <b-img thumbnail fluid left :src="comic.cover" alt="没有封面" blank-color="#88f" width=200 height=300></b-img>
             </b-col>
             <b-row>
                 <b-col>
-                <P>{{comic.comic}}</P>
+                    <b-row align-v="center" style="margin: 0.1rem;"><P>{{comic.comic}}</P></b-row>
+
                 <p>{{comic.type}}</p>
                 <p>{{comic.country}}</p>
                 <p>作者：{{comic.author}}</p>
-            </b-col>
+                </b-col>
             </b-row>
         </b-col>
         </b-row>
