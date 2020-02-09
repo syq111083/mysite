@@ -61,7 +61,7 @@ export default {
       if (this.searchContent !== null) {
         axios({
           method: 'get',
-          url: this.baseURL() + ':8080' + '/comic/getComics',
+          url: this.baseURL() + ':8080' + '/comics/getComics',
           params: {
             searchType: this.selected,
             searchContent: this.searchContent
