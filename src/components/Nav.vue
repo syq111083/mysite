@@ -1,22 +1,20 @@
 <template>
     <div id="app">
-        <div id="nav" style="padding: 0rem;">
-            <b-navbar type="dark" variant="dark" class="fixed-top">
+        <div id="nav">
+            <b-navbar type="dark" variant="dark" class="fixed-top text-center">
                 <b-navbar-nav>
                     <b-nav-item>
                         <router-link to="/">首页</router-link>
                     </b-nav-item>
-                    <b-nav-item>
-                        <router-link to="/login" v-if="!isLogin">登录</router-link>
+                    <b-nav-item v-if="!isLogin">
+                        <router-link to="/login" >登录</router-link>
                     </b-nav-item>
-                    <b-nav-item>
-                        <router-link to="/register" v-if="!isLogin">注册</router-link>
+                    <b-nav-item v-if="!isLogin">
+                        <router-link to="/register" >注册</router-link>
                     </b-nav-item>
-                    <b-nav-item>
-                    </b-nav-item>
-                    <b-nav-item><router-link to="/comic">漫画评分</router-link></b-nav-item>
-                    <b-nav-item><router-link to="/email" v-if="isLogin"><p class="text-success">欢迎, {{ nickname }}</p></router-link></b-nav-item>
-                    <b-nav-item v-show="isLogin"><b-link v-on:click="exit">退出登录</b-link></b-nav-item>
+                    <b-nav-item><router-link to="/comic">漫画</router-link></b-nav-item>
+                    <b-nav-item v-if="isLogin"><p class="text-success">欢迎, {{ nickname }}</p></b-nav-item>
+                    <b-nav-item v-if="isLogin"><b-link v-on:click="exit">退出登录</b-link></b-nav-item>
                     <b-nav-item><router-link to="/email">关于</router-link></b-nav-item>
                 </b-navbar-nav>
             </b-navbar>
@@ -49,7 +47,4 @@ export default {
 }
 </script>
 <style>
-    b-nav-item {
-        margin-left: 4rem
-    }
 </style>

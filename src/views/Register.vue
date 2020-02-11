@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid" style="padding: 0rem;">
-        <v-nav></v-nav>
+        <v-nav v-show="!afterLogin"></v-nav>
+        <div v-show="!afterLogin">
         <div class="row" style="margin-top: 3rem;">
             <div class="col" style="margin-top: 2.5rem;margin: 0 auto;">
                 <h1>注册页面</h1>
@@ -63,12 +64,17 @@
         <div class="row" style="margin: 0 auto;margin-top: 0.5rem;width: 6.25rem;">
             <b-button @click="submit()">确认注册</b-button>
         </div>
-
+        </div>
+        <b-container v-show="afterLogin" class="text-center">
+            <h1>注册成功</h1>
+            <router-link to="/login">点此去登陆</router-link>
+        </b-container>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import router from '../router/index.js'
 
 export default {
   data () {
@@ -81,14 +87,15 @@ export default {
       nickname: '',
       password: '',
       dismissSecs: 10,
-      dismissCountDown: 0
+      dismissCountDown: 0,
+      afterLogin: false
     }
   },
   methods: {
     checkEmail () {
       axios({
         method: 'post',
-        url: 'http://' + this.baseURL() + ':8080' + 'account/query',
+        url: this.baseURL() + ':8080' + '/account/query',
         data: {
           email: this.getEmail
         }
@@ -111,14 +118,23 @@ export default {
       if (this.nickname !== '' && this.email !== '' && this.sex !== '' && this.password !== '' && this.checkMsg !== '已被注册') {
         axios({
           method: 'post',
-          url: 'http://' + this.baseURL() + ':8080' + '/account/add',
+          url: this.baseURL() + ':8080' + '/account/add',
           data: {
             nickname: this.nickname,
             email: this.getEmail,
             password: this.password,
             sex: this.sexChoice
           }
-        }).then(response => { console.log(response) })
+        }).then(response => {
+          let res = ''
+          res = response.data
+          if (res.msg === '注册成功') {
+            this.afterLogin = true
+            setTimeout(this.push, 3000)
+          } else {
+            this.dismissCountDown = this.dismissSecs
+          }
+        })
       } else if (this.checkMsg === '已被注册') {
         this.dismissCountDown = this.dismissSecs
       } else {
@@ -127,6 +143,9 @@ export default {
     },
     countDownChanged (dismissCountDown) {
       this.dismissCountDown = dismissCountDown
+    },
+    push () {
+      router.push('/login')
     }
   }
 }

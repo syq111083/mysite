@@ -31,7 +31,7 @@
             <b-row style="margin: 0 auto;margin-top: 0.5rem;width: 100%;" v-show="show">
                 <b-alert :show="dismissCountDown" dismissible variant="danger" @dismissed="dismissCountDown=0"
                     @dismiss-count-down="countDownChanged" style="margin: 0 auto;">
-                    <p>请完善内容再提交</p>
+                    <p>账号或密码错误，请重新输入</p>
                     <p> {{ dismissCountDown }}秒后警告关闭 </p>
                     <b-progress variant="warning" :max="dismissSecs" :value="dismissCountDown" height="4px"></b-progress>
                 </b-alert>
@@ -83,6 +83,8 @@ export default {
           window.localStorage.setItem('nickname', res.data.nickname)
           this.isLogin = true
           setTimeout(this.push, 3000)
+        }).catch(res => {
+          this.dismissCountDown = this.dismissSecs
         })
       } else {
         this.dismissCountDown = this.dismissSecs

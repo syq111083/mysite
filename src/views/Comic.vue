@@ -15,7 +15,7 @@
                 </b-input-group-addon>
             </b-input-group>
         </b-row>
-        <hr v-show="showProps">
+        <hr v-show="showProps" style="margin-top: 8rem;">
         <b-row v-show="showProps">
         <b-col cols="4" v-for="(comic,index) in comics" v-bind:key="index">
             <b-col cols>
@@ -23,8 +23,7 @@
             </b-col>
             <b-row>
                 <b-col>
-                    <b-row align-v="center" style="margin: 0.1rem;"><P>{{comic.comic}}</P></b-row>
-
+                <P>{{comic.comic}}</P>
                 <p>{{comic.type}}</p>
                 <p>{{comic.country}}</p>
                 <p>作者：{{comic.author}}</p>
