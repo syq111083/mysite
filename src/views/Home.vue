@@ -38,31 +38,7 @@
                 </div>
             </b-col>
         </b-row>
-        <b-row style="width: 100%;">
-            <!-- Use HTML and sub-components in slots -->
-                <b-pagination
-                  v-model="currentPage"
-                  :total-rows="rows"
-                  :per-page="perPage"
-                  class="mt-4"
-                  style="margin: 0 auto;margin-bottom: 5rem;"
-                >
-                  <template v-slot:first-text><span class="text-success">第一页</span></template>
-                  <template v-slot:prev-text><span class="text-danger">前一页</span></template>
-                  <template v-slot:next-text><span class="text-warning">下一页</span></template>
-                  <template v-slot:last-text><span class="text-info">最后一页</span></template>
-                  <template v-slot:ellipsis-text>
-                    <b-spinner small type="grow"></b-spinner>
-                    <b-spinner small type="grow"></b-spinner>
-                    <b-spinner small type="grow"></b-spinner>
-                  </template>
-                  <template v-slot:page="{ page, active }">
-                    <b v-if="active">{{ page }}</b>
-                    <i v-else>{{ page }}</i>
-                  </template>
-                </b-pagination>
 
-</b-row>
 </b-container>
 </template>
 
@@ -74,10 +50,7 @@ export default {
       text2: '`ESlint，组件标签命名必须带一个“-”在里面，不然报错`,或者驼峰命名,然后使用组件的时候,换成kabab命名方式，例如myName，用的时候为<my-name></my-name>',
       text3: 'ESlint,data里的数据，最后一个末尾不要加逗号',
       text4: '前端页面的路径注意别和后端写重了，不然springboot就算controller设置@Crosorigin 也会被nginx提示跨域',
-      isClick: false,
-      rows: 100,
-      perPage: 10,
-      currentPage: 1
+      isClick: false
     }
   },
   methods: {

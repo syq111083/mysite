@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div id="nav">
-            <b-navbar type="dark" variant="dark" class="fixed-top text-center">
+            <b-navbar type="dark" variant="dark" class="fixed-top">
                 <b-navbar-nav>
                     <b-nav-item>
                         <router-link to="/">首页</router-link>
