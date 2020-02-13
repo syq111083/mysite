@@ -21,10 +21,10 @@
                 </b-col>
                 <b-row>
                     <b-col>
-                        <P>{{comic.comic}}</P>
-                        <p>{{comic.type}}</p>
-                        <p>{{comic.country}}</p>
-                        <p>作者：{{comic.author}}</p>
+                        <P>题目：{{comic.comic}}</P>
+                        <p>类型：<b-badge href="#" variant="info">{{comic.type}}</b-badge></p>
+                        <p>国家：{{comic.country}}</p>
+                        <p>作者：<b-badge href="#" variant="success">{{comic.author}}</b-badge></p>
                     </b-col>
                 </b-row>
             </b-col>
