@@ -102,8 +102,7 @@ export default {
     getAll () {
       axios({
         method: 'GET',
-        // url: this.baseURL() + ':8080' + '/comics/pagesList'
-        url: 'http://localhost:8888/comics/pagesList',
+        url: this.baseURL() + ':8888' + '/comics/pagesList',
         params: {
           pagesNumber: this.currentPage
         }
