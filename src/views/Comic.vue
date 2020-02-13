@@ -68,7 +68,7 @@ export default {
   created () {
     axios({
       method: 'get',
-      url: this.baseURL() + ':8080' + '/comics/numbers'
+      // url: this.baseURL() + ':8080' + '/comics/numbers'
       url: 'http://localhost:8888/comics/numbers'
     }).then(res => {
       this.rows = res.data.comicNumbers
