@@ -11,6 +11,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Nav from './components/Nav.vue'
 import axios from 'axios'
 import store from './store'
+import Detail from './components/ComicDetail.vue'
 
 Vue.component('b-link', BLink)
 // Install BootstrapVue
@@ -18,6 +19,7 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 Vue.component('v-nav', Nav)
+Vue.component('v-detail', Detail)
 
 Vue.config.productionTip = false
 

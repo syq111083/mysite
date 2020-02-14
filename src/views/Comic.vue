@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid">
         <v-nav></v-nav>
+        <b-container fluid="true" v-show="clickForDetail">
         <b-row style="margin-top: 10rem;">
             <b-input-group class="mx-auto" style="width: 50%;">
                 <b-dropdown :text="selected" variant="success">
@@ -16,12 +17,12 @@
         </b-row>
         <b-row v-show="showProps" style="margin-top: 2rem;" id="comicView">
             <b-col cols="4" v-for="(comic,index) in comics" v-bind:key="index" style="margin-top: 2rem;">
-                <b-col cols>
+                <b-col>
                     <b-img thumbnail fluid left :src="comic.cover" alt="没有封面" blank-color="#88f" width=200 height=300></b-img>
                 </b-col>
                 <b-row>
                     <b-col>
-                        <P>题目：{{comic.comic}}</P>
+                        <b-link><P @click="detail(index,comics)">题目：{{comic.comic}}</P></b-link>
                         <p>类型：<b-badge href="#" variant="info">{{comic.type}}</b-badge></p>
                         <p>国家：{{comic.country}}</p>
                         <p>作者：<b-badge href="#" variant="success">{{comic.author}}</b-badge></p>
@@ -41,6 +42,8 @@
                   <p class="mt-3">Current Page: {{ currentPage }}</p>
                   </div>
         </b-row>
+        </b-container>
+        <v-detail v-if="!clickForDetail" :comic="contentDetail" style="margin-top: 3rem;"></v-detail>
     </div>
 </template>
 
@@ -59,7 +62,10 @@ export default {
       perPage: 3,
       currentPage: 1,
       rows: 1,
-      showPage: true
+      showPage: true,
+      clickForDetail: true,
+      index: 0,
+      contentDetail: []
     }
   },
   mounted () {
@@ -74,6 +80,11 @@ export default {
     }).catch(res => console.log(res))
   },
   methods: {
+    detail (index, comics) {
+      this.clickForDetail = false
+      this.index = index
+      this.contentDetail = comics[index]
+    },
     showProperties () {
       this.showProps = !this.showProps
     },
