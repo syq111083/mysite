@@ -1,15 +1,13 @@
 <template>
     <b-container>
         <v-nav></v-nav>
-        <b-row>
-            <b-col cols="2" class="mx-auto">
-                <b-breadcrumb>
-            <b-breadcrumb-item>点击上传封面</b-breadcrumb-item>
-            </b-breadcrumb>
+        <b-row cols="3" style="margin-bottom: 1rem;">
+            <b-col cols="4" class="mx-auto">
+               <b-form-file class="mt-3" v-model="cover" id="upload" accept="image/*"></b-form-file>
             </b-col>
         </b-row>
         <b-row>
-            <b-img alt="图片" class="mx-auto" v-show="showPhoto"></b-img>
+            <b-img :src="preview" alt="图片" class="mx-auto" v-show="showPhoto" height="300"></b-img>
         </b-row>
         <b-row>
             <b-col cols="3" class="mx-auto"><label for="name">名称</label>
@@ -50,7 +48,8 @@ export default {
       author: null,
       type: null,
       introduction: null,
-      cover: null
+      cover: null,
+      preview: null
     }
   },
   methods: {
@@ -59,10 +58,24 @@ export default {
       this.author = null
       this.type = null
       this.introduction = null
+    },
+    showCover (e) {
+      console.log(this.cover)
+      this.showPhoto = true
+      // 读取文件:
+      console.log(e)
+      let url = URL.createObjectURL(e)
+      this.preview = url
     }
+  },
+  watch: {
+    cover: 'showCover'
   }
 }
 </script>
 
 <style>
+    .custom-file-input:lang(en) ~ .custom-file-label::after {
+      content: '点此上传封面';
+    }
 </style>

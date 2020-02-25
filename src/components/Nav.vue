@@ -10,7 +10,7 @@
                         <router-link to="/login" >登录</router-link>
                     </b-nav-item>
                     <b-nav-item v-if="!isLogin">
-                        <router-link to="/register" >注册</router-link>
+                        <router-link to="/register">注册</router-link>
                     </b-nav-item>
                     <b-nav-item><router-link to="/comic">漫画库</router-link></b-nav-item>
                     <b-nav-item><router-link to="/comicUpload">上传漫画信息</router-link></b-nav-item>
