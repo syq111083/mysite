@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <v-nav></v-nav>
         <b-container fluid="true" v-show="clickForDetail">
-        <b-row style="margin-top: 10rem;">
+            <b-row><h1 class="mx-auto"><b-badge>搜索漫画</b-badge></h1></b-row>
+        <b-row style="margin-top: 1rem;">
             <b-input-group class="mx-auto" style="width: 50%;">
                 <b-dropdown :text="selected" variant="success">
                     <b-dropdown-item @click="change('名称')">名称</b-dropdown-item>

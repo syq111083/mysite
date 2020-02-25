@@ -12,7 +12,8 @@
                     <b-nav-item v-if="!isLogin">
                         <router-link to="/register" >注册</router-link>
                     </b-nav-item>
-                    <b-nav-item><router-link to="/comic">漫画</router-link></b-nav-item>
+                    <b-nav-item><router-link to="/comic">漫画库</router-link></b-nav-item>
+                    <b-nav-item><router-link to="/comicUpload">上传漫画信息</router-link></b-nav-item>
                     <b-nav-item v-if="isLogin">欢迎, {{ nickname }}</b-nav-item>
                     <b-nav-item v-if="isLogin"><b-link v-b-modal.modal-1>退出登录</b-link></b-nav-item>
                     <b-nav-item><router-link to="/email">关于</router-link></b-nav-item>
