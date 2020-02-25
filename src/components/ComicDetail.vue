@@ -1,11 +1,10 @@
 <template>
-    <b-container style="padding: 0;margin: 0;">
+    <b-container>
         <b-row>
-        <b-col offset-md="1" style="border-right: solid #2C3E50;">
+        <b-col style="border-right: solid #2C3E50;">
         <b-row>
-            <b-col>
                 <b-col>
-                    <b-img thumbnail fluid left :src="comic.cover" alt="没有封面" blank-color="#88f" width=300 height=500
+                    <b-img thumbnail :src="comic.cover" alt="没有封面" blank-color="#88f" width=300 height=500
                         :comic="comic"></b-img>
                 </b-col>
                 <b-col>
@@ -16,10 +15,9 @@
                     <p>作者：<b-badge href="#" variant="success">{{comic.author}}</b-badge>
                     </p>
                 </b-col>
-            </b-col>
         </b-row>
         <b-row>
-            <b-col cols="10" style="padding: 0;">
+            <b-col cols="8" style="padding: 0;">
                 <label for="range-1" style="margin-top: 1rem;">剧情评分：<b-badge variant="warning">{{ valueOfStory }}</b-badge></label>
                 <b-form-input id="range-1" v-model="valueOfStory" type="range" min="0" max="10"></b-form-input>
                 <label for="range-2" style="margin-top: 1rem;">画工评分：<b-badge variant="warning">{{ valueOfGraph }}</b-badge></label>
@@ -50,8 +48,23 @@
         </b-modal>
         </b-row>
         </b-col>
-        <b-col>
+        <b-col v-for="(comment,index) in comments" :key="index">
             <h2>预留其他人评论区域</h2>
+            <b-row style="margin-top: 1.5rem;">
+                <b-col style="border-top:  #2C3E50 dotted;border-right: #2C3E50 dotted;">
+                   <h6> 作者：{{ comment.author }} </h6>
+                </b-col>
+            </b-row>
+                <b-row>
+                   <b-col style="border-right: #2C3E50 dotted;">
+                     <h6> 标题：{{ comment.title }} </h6>
+                   </b-col>
+                </b-row>
+                <b-row>
+                    <b-col style="border-bottom:  #2C3E50 dotted;border-right: #2C3E50 dotted;">
+                     <p> 内容：{{ comment.content }} </p>
+                    </b-col>
+                </b-row>
         </b-col>
         </b-row>
     </b-container>
@@ -65,7 +78,14 @@ export default {
       valueOfStory: 5,
       valueOfGraph: 5,
       valueOfCharacter: 5,
-      average: 0
+      average: 0,
+      comments: [
+        {
+          title: '题目',
+          content: '内容',
+          author: '作者'
+        }
+      ]
     }
   },
   watch: {
