@@ -75,7 +75,7 @@ export default {
   created () {
     axios({
       method: 'get',
-      url: this.baseURL() + ':8888' + '/comics/numbers'
+      url: this.baseURL() + '/comics/numbers'
     }).then(res => {
       this.rows = res.data.comicNumbers
     }).catch(res => console.log(res))
@@ -97,7 +97,7 @@ export default {
       if (this.searchContent !== null) {
         axios({
           method: 'get',
-          url: this.baseURL() + ':8888' + '/comics/getComics',
+          url: this.baseURL() + '/comics/getComics',
           params: {
             searchType: this.selected,
             searchContent: this.searchContent
@@ -113,7 +113,7 @@ export default {
     getAll () {
       axios({
         method: 'GET',
-        url: this.baseURL() + ':8888' + '/comics/pagesList',
+        url: this.baseURL() + '/comics/pagesList',
         params: {
           pagesNumber: this.currentPage
         }

@@ -3,8 +3,8 @@
         <v-nav></v-nav>
         <b-row cols="3" style="margin-bottom: 1rem;">
             <b-col cols="4" class="mx-auto">
-               <b-form-file class="mt-3" v-model="cover" id="upload" accept="image/*"></b-form-file>
-            </b-col>
+                     <b-form-file class="mt-3" v-model="cover" id="upload" accept="image/*"></b-form-file>
+     </b-col>
         </b-row>
         <b-row>
             <b-img :src="preview" alt="图片" class="mx-auto" v-show="showPhoto" height="300"></b-img>
@@ -31,15 +31,17 @@
         </b-row>
         <b-row style="margin-top: 1rem;">
             <b-button-group class="mx-auto">
-                <b-button variant="primary">提交</b-button>
+                <b-button variant="primary" @click="submit">提交</b-button>
                 <b-button @click="reset">重置</b-button>
             </b-button-group>
+            <b-modal v-model="modalShow">请填写完整再提交</b-modal>
         </b-row>
 
     </b-container>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -49,7 +51,9 @@ export default {
       type: null,
       introduction: null,
       cover: null,
-      preview: null
+      preview: null,
+      modalShow: false,
+      base64Picture: null
     }
   },
   methods: {
@@ -60,12 +64,34 @@ export default {
       this.introduction = null
     },
     showCover (e) {
-      console.log(this.cover)
       this.showPhoto = true
       // 读取文件:
-      console.log(e)
       let url = URL.createObjectURL(e)
       this.preview = url
+      console.log(url)
+      var text = (new Response(e)).text()
+      console.log(text)
+      this.base64Picture = text
+    },
+    submit () {
+      if (this.name === null || this.type === null || this.author === null || this.cover === null) {
+        this.modalShow = true
+      } else {
+        let config = {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+
+        let param = new FormData()
+        param.append('srcFile', this.cover)
+        axios({
+          method: 'post',
+          url: this.baseURL() + '/comics/uploadComic',
+          data: param,
+          config: config
+        }).then(res => console.log(this.base64Picture)).catch(res => console.log(res))
+      }
     }
   },
   watch: {

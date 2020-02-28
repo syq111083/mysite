@@ -24,7 +24,8 @@ Vue.component('v-detail', Detail)
 Vue.config.productionTip = false
 
 Vue.prototype.baseURL = function () {
-  return 'http://47.104.111.113'
+  // return 'http://47.104.111.113:8888'
+  return 'http://127.0.0.1:8888'
 }
 
 new Vue({

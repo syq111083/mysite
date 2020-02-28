@@ -95,7 +95,7 @@ export default {
     checkEmail () {
       axios({
         method: 'post',
-        url: this.baseURL() + ':8080' + '/account/query',
+        url: this.baseURL() + '/account/query',
         data: {
           email: this.getEmail
         }
@@ -118,7 +118,7 @@ export default {
       if (this.nickname !== '' && this.email !== '' && this.sex !== '' && this.password !== '' && this.checkMsg !== '已被注册') {
         axios({
           method: 'post',
-          url: this.baseURL() + ':8080' + '/account/add',
+          url: this.baseURL() + '/account/add',
           data: {
             nickname: this.nickname,
             email: this.getEmail,
